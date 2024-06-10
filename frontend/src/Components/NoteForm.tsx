@@ -15,7 +15,8 @@ function NoteForm({id, onSubmit, title="", markdown="",tags=[],}: NoteFormProps)
     useEffect(() => {
         getAllTags()
         setSelectedTags(tags)
-    },[])
+        // console.log("123")
+    },[title])
 
     function getAllTags() {
         let endpoint = "http://localhost:8080/tag/all"
@@ -47,8 +48,8 @@ function NoteForm({id, onSubmit, title="", markdown="",tags=[],}: NoteFormProps)
         navigate("..")
     }
 
-    console.log(tags)
-    console.log(title)
+    // console.log(tags)
+    // console.log(title)
 
     return (
         <Form onSubmit={handleSubmit}>

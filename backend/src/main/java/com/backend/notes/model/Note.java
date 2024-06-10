@@ -13,7 +13,7 @@ public class Note {
     private String id;
     @Column(name = "title")
     private String title;
-    @OneToMany
+    @ManyToMany
     @Column(name = "tags")
     private List<Tag> tags;
     @Column(name = "markdown")

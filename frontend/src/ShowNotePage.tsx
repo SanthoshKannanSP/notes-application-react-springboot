@@ -9,15 +9,19 @@ function ShowNotePage() {
     const [note, setNote] = useState<NoteData>()
     const [status, setStatus] = useState("")
     
-    async function getNote() {
+    function getNote() {
         let endpoint = `http://localhost:8080/note/${id}`
-        let response = await fetch(endpoint,{
+        fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
+        }).then(response => {
+            if(!response.ok){
+                setStatus("error")
+            }
+            else {
+                response.json().then(result => setNote(result))
+            }
         })
-        let result = await response.json()
-        if(result.status == "error") setStatus("error")
-        else setNote(result.data)
     }
 
     useEffect(()=>{
@@ -40,7 +44,9 @@ function ShowNotePage() {
                 </Col>
                 <Col xs="auto">
                     <Stack gap={2} direction="horizontal">
-                        <Button variant="primary">Edit</Button>
+                        <Link to={`/${id}/edit`}>
+                            <Button variant="primary">Edit</Button>
+                        </ Link>
                         <Button variant="outline-danger">Delete</Button>
                         <Link to="/">
                             <Button variant="outline-secondary">Back</Button>
