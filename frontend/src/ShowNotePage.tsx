@@ -10,7 +10,7 @@ function ShowNotePage() {
     const [status, setStatus] = useState("")
     
     function getNote() {
-        let endpoint = `http://localhost:8080/note/${id}`
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/note/${id}`
         fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},

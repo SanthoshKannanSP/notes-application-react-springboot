@@ -19,7 +19,7 @@ function NoteForm({id, onSubmit, title="", markdown="",tags=[],}: NoteFormProps)
     },[title])
 
     function getAllTags() {
-        let endpoint = "http://localhost:8080/tag/all"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/tag/all`
         fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
@@ -27,7 +27,7 @@ function NoteForm({id, onSubmit, title="", markdown="",tags=[],}: NoteFormProps)
     }
 
     async function onAddTag(newTag: Tag) {
-        let endpoint = "http://localhost:8080/tag/create"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/tag/create`
         fetch(endpoint,{
           method: "POST",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},

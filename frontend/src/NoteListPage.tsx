@@ -18,7 +18,7 @@ function NoteListPage() {
     },[title, selectedTags, notes])
 
     function getAllTags() {
-        let endpoint = "http://localhost:8080/tag/all"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/tag/all`
         fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
@@ -26,7 +26,7 @@ function NoteListPage() {
     }
 
     function getNotes() {
-        let endpoint = "http://localhost:8080/note/all"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/note/all`
         fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json"},

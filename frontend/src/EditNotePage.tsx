@@ -9,8 +9,7 @@ function EditNotePage() {
     const [status, setStatus] = useState("")
 
     function getNote() {
-        // console.log(id);
-        let endpoint = `http://localhost:8080/note/${id}`
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/note/${id}`
         fetch(endpoint,{
           method: "GET",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
@@ -29,14 +28,13 @@ function EditNotePage() {
     },[])
 
     async function onEditNote(data: NoteData) {
-        let endpoint = "http://localhost:8080/note/edit"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/note/edit`
         let response = await fetch(endpoint,{
           method: "POST",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
           body: JSON.stringify(data)
         })
         let result = await response.json()
-        console.log(result)
     }
     if(status === "error") return <Navigate to="/" replace></Navigate>
     else{

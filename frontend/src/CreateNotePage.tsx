@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 function CreateNotePage() {
     function onCreateNote(data: NoteData) {
-        let endpoint = "http://localhost:8080/note/create"
+        let endpoint = `${import.meta.env.VITE_APP_BACKEND_HOST}/note/create`
         fetch(endpoint,{
           method: "POST",
           headers: {"Content-Type":"application/json","Access-Control-Allow-Origin": "*"},
